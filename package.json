@@ -1,0 +1,25 @@
+{
+  "name": "seleniumjs-projects",
+  "version": "1.0.0",
+  "description": "Test Automation PH Selenium JS Mastery Training",
+  "scripts": {
+    "test:headless:login": "cross-env HEADLESS=true FEATURE_NAME=login mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=login-report src/features/login/login.spec.js",
+    "test:headed:login": "cross-env HEADLESS=false FEATURE_NAME=login mocha --timeout 30000 src/features/login/login.spec.js",
+    "test:headless": "cross-env HEADLESS=true mocha --timeout 30000 src/features/**/*.spec.js",
+    "test:headed": "cross-env HEADLESS=false mocha --timeout 30000 src/features/**/*.spec.js",
+    "test:web-element-spec": "cross-env HEADLESS=false FEATURE_NAME=web_element_spec mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=web-element-report src/features/find-web-elements-practice/web-element.spec.js"
+  },
+  "author": "Reginald Offemaria",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^10.7.3",
+    "selenium-webdriver": "^4.23.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "csv-parser": "^3.0.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}
