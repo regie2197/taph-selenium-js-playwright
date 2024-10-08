@@ -7,7 +7,10 @@
     "test:headed:login": "cross-env HEADLESS=false FEATURE_NAME=login mocha --timeout 30000 src/features/login/login.spec.js",
     "test:headless": "cross-env HEADLESS=true mocha --timeout 30000 src/features/**/*.spec.js",
     "test:headed": "cross-env HEADLESS=false mocha --timeout 30000 src/features/**/*.spec.js",
-    "test:web-element-spec": "cross-env HEADLESS=false FEATURE_NAME=web_element_spec mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=web-element-report src/features/find-web-elements-practice/web-element.spec.js"
+    "test:web-element-spec": "cross-env HEADLESS=false FEATURE_NAME=web_element_spec mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=web-element-report src/features/find-web-elements-practice/web-element.spec.js",
+    "dropdown:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=dropdown-report src/features/advance-web-element-actions/Dropdown.spec.js",
+    "drag-drop:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=drag-drop-report src/features/advance-web-element-actions/Mouse-Actions.spec.js"
+
   },
   "author": "Reginald Offemaria",
   "license": "ISC",
