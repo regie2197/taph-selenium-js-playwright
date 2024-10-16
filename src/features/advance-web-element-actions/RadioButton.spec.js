@@ -1,8 +1,7 @@
-const { Builder, By } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
+const { By } = require('selenium-webdriver');
 const assert = require('assert');
 const addContext = require('mochawesome/addContext');
-const { takeScreenshot } = require('./../../shared/utility.js');
+const { takeScreenshot, initializeDriver } = require('./../../shared/utility.js');
 const path = require('path');
 
 describe('Radio Button Test', function() {
