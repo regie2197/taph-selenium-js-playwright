@@ -9,8 +9,9 @@
     "test:headed": "cross-env HEADLESS=false mocha --timeout 30000 src/features/**/*.spec.js",
     "test:web-element-spec": "cross-env HEADLESS=false FEATURE_NAME=web_element_spec mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=web-element-report src/features/find-web-elements-practice/web-element.spec.js",
     "dropdown:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=dropdown-report src/features/advance-web-element-actions/Dropdown.spec.js",
-    "drag-drop:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=drag-drop-report src/features/advance-web-element-actions/Mouse-Actions.spec.js"
-
+    "drag-drop:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=drag-drop-report src/features/advance-web-element-actions/Mouse-Actions.spec.js",
+    "checkboxes:test:headed": "cross-env HEADLESS=false FEATURE_NAME=checkboxes mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=checkboxes-report src/features/advance-web-element-actions/Checkboxes.spec.js",
+    "radio:test:headed": "cross-env HEADLESS=false FEATURE_NAME=radio-button mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=radio-button-report src/features/advance-web-element-actions/RadioButton.spec.js"
   },
   "author": "Reginald Offemaria",
   "license": "ISC",

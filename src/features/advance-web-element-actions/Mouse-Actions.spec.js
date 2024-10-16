@@ -1,9 +1,16 @@
-const { Builder, By, until, Actions } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const assert = require('assert');
 const path = require('path');
 const addContext = require('mochawesome/addContext');
-const { takeScreenshot } = require('./../../shared/utility.js');
+const { takeScreenshot, initializeDriver } = require('./../../shared/utility.js');
+
+/*
+function sleep(time) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, time || 1000);
+    });
+}*/
 
 describe('Mouse Actions Test Suite', function () {
     let driver;
@@ -15,14 +22,7 @@ describe('Mouse Actions Test Suite', function () {
     });
 
     before(async function () {
-        const chromeOptions = new chrome.Options();
-        driver = await new Builder()
-            .forBrowser('chrome')
-            .setChromeOptions(chromeOptions)
-            .build();
-
-        await driver.manage().setTimeouts({ implicit: 10000 });
-        await driver.manage().window().maximize();
+        driver = await initializeDriver();
     });
 
     after(async function () {
@@ -48,6 +48,7 @@ describe('Mouse Actions Test Suite', function () {
         // Assert target has changed text to "Dropped!"
         const targetText = await targetElement.getText();
         assert.strictEqual(targetText, 'Dropped!', `Expected text to be 'Dropped!' but got ${targetText}`);
+        console.log(targetText)
         
         // Take a screenshot after the drag-and-drop action
         const screenshotPath = await takeScreenshot(driver, screenshotDir, `${testCaseName}_drag_and_drop`);
@@ -68,13 +69,13 @@ describe('Mouse Actions Test Suite', function () {
         
         // 1. Move to the source element (draggable)
         await actions.move({ origin: sourceElement }).press().perform();
-
         // 2. Move to the target element (droppable)
         await actions.move({ origin: targetElement }).release().perform();
 
         // Assert target has changed text to "Dropped!"
         const targetText = await targetElement.getText();
         assert.strictEqual(targetText, 'Dropped!', `Expected text to be 'Dropped!' but got ${targetText}`);
+        console.log(`The target text is ${targetText}`);
         
         // Take a screenshot after the drag-and-drop action
         const screenshotPath = await takeScreenshot(driver, screenshotDir, `${testCaseName}_manual_drag_and_drop`);

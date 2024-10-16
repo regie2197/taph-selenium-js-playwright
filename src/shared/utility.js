@@ -1,6 +1,25 @@
+const { Builder } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const fs = require('fs');
 const path = require('path');
-const csvParser = require('csv-parser'); // Required for CSV parsing
+const csvParser = require('csv-parser'); 
+
+/**
+ * Initializes a Selenium WebDriver instance for Chrome with specified options.
+ * @returns { chrome } - The Selenium WebDriver instance.
+ */
+const initializeDriver = async () => {
+    const chromeOptions = new chrome.Options();
+    const driver = await new Builder()
+        .forBrowser('chrome')
+        .setChromeOptions(chromeOptions)
+        .build();
+
+    await driver.manage().setTimeouts({ implicit: 10000 });
+    await driver.manage().window().maximize();
+
+    return driver;
+};
 
 /**
  * Formats a date into a human-readable format: MM-DD-YYYY_HH-MM-SS
@@ -8,15 +27,12 @@ const csvParser = require('csv-parser'); // Required for CSV parsing
  */
 const getFormattedDate = () => {
     const now = new Date();
-
     const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const month = String(now.getMonth() + 1).padStart(2, '0'); 
     const day = String(now.getDate()).padStart(2, '0');
-    
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
-
     return `${month}-${day}-${year}_${hours}-${minutes}-${seconds}`;
 };
 
@@ -30,26 +46,17 @@ const getFormattedDate = () => {
  */
 const takeScreenshot = async (driver, screenshotDir, testCaseName) => {
     try {
-        // Take a screenshot
         let screenshot = await driver.takeScreenshot();
-
         const sanitizedTestCaseName = testCaseName.replace(/[^a-zA-Z0-9_-]/g, '');
         const formattedDate = getFormattedDate();
-
         const screenshotName = `${sanitizedTestCaseName}-${formattedDate}.png`;
 
-        // Ensure the directory exists (create if it doesn't)
         if (!fs.existsSync(screenshotDir)) {
             fs.mkdirSync(screenshotDir, { recursive: true });
         }
 
-        // Define the full path where the screenshot will be saved
         const screenshotPath = path.join(screenshotDir, screenshotName);
-
-        // Save the screenshot to the file system
         fs.writeFileSync(screenshotPath, screenshot, 'base64');
-
-        // Return the path for the screenshot
         console.log(`Screenshot taken and saved at ${screenshotPath}`);
         return screenshotPath;
     } catch (error) {
@@ -69,11 +76,9 @@ const getTestData = (fileName) => {
     const fileExtension = path.extname(fileName);
 
     if (fileExtension === '.json') {
-        // Read JSON file
         const rawData = fs.readFileSync(filePath);
         return JSON.parse(rawData);
     } else if (fileExtension === '.csv') {
-        // Read CSV file (returns a promise)
         return new Promise((resolve, reject) => {
             const testData = [];
             fs.createReadStream(filePath)
@@ -93,6 +98,7 @@ const getTestData = (fileName) => {
 
 // Export all utility functions
 module.exports = {
+    initializeDriver,
     takeScreenshot,
     getFormattedDate,
     getTestData

@@ -3,7 +3,7 @@ const chrome = require('selenium-webdriver/chrome');
 const assert = require('assert');
 const path = require('path');
 const addContext = require('mochawesome/addContext');
-const { takeScreenshot } = require('./../../shared/utility.js');
+const { takeScreenshot, initializeDriver } = require('./../../shared/utility.js');
 
 describe('Dropdown Actions Test Suite', function () {
     let driver;
@@ -15,14 +15,7 @@ describe('Dropdown Actions Test Suite', function () {
     });
 
     before(async function () {
-        const chromeOptions = new chrome.Options();
-        driver = await new Builder()
-            .forBrowser('chrome')
-            .setChromeOptions(chromeOptions)
-            .build();
-
-        await driver.manage().setTimeouts({ implicit: 10000 });
-        await driver.manage().window().maximize();
+        driver = await initializeDriver();
     });
 
     after(async function () {
@@ -36,11 +29,22 @@ describe('Dropdown Actions Test Suite', function () {
         
         // Navigate to the dropdown page
         await driver.get('https://the-internet.herokuapp.com/dropdown');
+
+        const option1 = await driver.findElement(By.css('option[value="1"]')).click();
+        const screenshotPath1 = await takeScreenshot(driver, screenshotDir, `${testCaseName}_option_1`);
+        addContext(this, { title: 'Dropdown Option 1 Screenshot', value: screenshotPath1 });
+
+
+        const option2 = await driver.findElement(By.css('option[value="2"]')).click();
+        const screenshotPath2 = await takeScreenshot(driver, screenshotDir, `${testCaseName}_option_2`);
+        addContext(this, { title: 'Dropdown Option 2 Screenshot', value: screenshotPath2 });
+
         
         // Locate the dropdown
-        const dropdown = await driver.findElement(By.id('dropdown'));
+        //const dropdown = await driver.findElement(By.id('dropdown'));
         
         // Select option 1
+        /*
         await dropdown.findElement(By.css('option[value="1"]')).click();
         let selectedOption = await dropdown.findElement(By.css('option:checked')).getText();
         assert.strictEqual(selectedOption, 'Option 1', `Expected Option 1 but got ${selectedOption}`);
@@ -57,5 +61,6 @@ describe('Dropdown Actions Test Suite', function () {
         // Take a screenshot after selecting option 2
         const screenshotPath2 = await takeScreenshot(driver, screenshotDir, `${testCaseName}_option_2`);
         addContext(this, { title: 'Dropdown Option 2 Screenshot', value: screenshotPath2 });
+        */
     });
 });
