@@ -15,7 +15,7 @@ const initializeDriver = async () => {
         .setChromeOptions(chromeOptions)
         .build();
 
-    await driver.manage().setTimeouts({ implicit: 10000 });
+    await driver.manage().setTimeouts({ implicit: 120000 });
     await driver.manage().window().maximize();
 
     return driver;

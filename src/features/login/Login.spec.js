@@ -35,7 +35,7 @@ describe('Login Test Suites', function () {
         loginPage = new LoginPage(driver);
 
         await driver.manage().setTimeouts({ implicit: 10000 });
-
+        
         if (!headless) {
             await driver.manage().window().maximize();
         }

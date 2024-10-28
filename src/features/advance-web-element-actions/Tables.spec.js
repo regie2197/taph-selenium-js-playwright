@@ -13,7 +13,6 @@ describe('DataTables Row Display Test', function() {
     });
 
     before(async function() {
-        // Initialize WebDriver using the utility function
         driver = await initializeDriver();
 
         await driver.get('https://datatables.net/examples/data_sources/dom.html');
