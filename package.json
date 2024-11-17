@@ -1,0 +1,39 @@
+{
+  "name": "seleniumjs-projects",
+  "version": "1.0.0",
+  "description": "Test Automation PH Selenium JS Mastery Training",
+  "scripts": {
+    "test": "mocha --timeout 30000 src/features/advance-web-element-actions/*.spec.js",
+    "test:headless:login": "cross-env HEADLESS=true FEATURE_NAME=login mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=login-report src/features/login/login.spec.js",
+    "test:headed:login": "cross-env HEADLESS=false FEATURE_NAME=login mocha --timeout 30000 src/features/login/login.spec.js",
+    "test:headless": "cross-env HEADLESS=true mocha --timeout 30000 src/features/**/*.spec.js",
+    "test:headed": "cross-env HEADLESS=false mocha --timeout 30000 src/features/**/*.spec.js",
+    "test:web-element-spec": "cross-env HEADLESS=false FEATURE_NAME=web_element_spec mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=web-element-report src/features/find-web-elements-practice/web-element.spec.js",
+    "dropdown:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=dropdown-report src/features/advance-web-element-actions/Dropdown.spec.js",
+    "drag-drop:test:headed": "cross-env HEADLESS=false FEATURE_NAME=dropdown mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=drag-drop-report src/features/advance-web-element-actions/Mouse-Actions.spec.js",
+    "checkboxes:test:headed": "cross-env HEADLESS=false FEATURE_NAME=checkboxes mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=checkboxes-report src/features/advance-web-element-actions/Checkboxes.spec.js",
+    "radio:test:headed": "cross-env HEADLESS=false FEATURE_NAME=radio-button mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=radio-button-report src/features/advance-web-element-actions/RadioButton.spec.js",
+    "file-upload:test:headed": "cross-env HEADLESS=false FEATURE_NAME=file-upload mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=file-upload-report src/features/advance-web-element-actions/File-upload.spec.js",
+    "alerts:test:headed": "cross-env HEADLESS=false FEATURE_NAME=alert mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=alerts-report src/features/advance-web-element-actions/Alerts.spec.js",
+    "date-picker:test:headed": "cross-env HEADLESS=false FEATURE_NAME=date-picker mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=date-picker-report src/features/advance-web-element-actions/Date-picker.spec.js",
+    "tables:test:headed": "cross-env HEADLESS=false FEATURE_NAME=tables mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=tables-report src/features/advance-web-element-actions/Tables.spec.js",
+    "web-actions:test": "cross-env HEADLESS=false FEATURE_NAME=web-actions mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=web-actions-report src/features/advance-web-element-actions/other-advance-web-actions.spec.js",
+    "network-response:test": "cross-env HEADLESS=false FEATURE_NAME=web-actions mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=network-response-report src/features/advance-web-element-actions/Network-response.spec.js",
+    "api:test": "cross-env HEADLESS=true FEATURE_NAME=api-tests mocha --timeout 30000 --reporter mochawesome --reporter-options overwrite=false,json=false,reportFilename=api-test-report src/features/api-testing/api-tests.spec.js"
+  },
+  "author": "Reginald Offemaria",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^10.7.3",
+    "selenium-webdriver": "^4.23.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "cross-env": "^7.0.3",
+    "csv-parser": "^3.0.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "supertest": "^7.0.0"
+  }
+}
