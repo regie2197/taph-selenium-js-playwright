@@ -33,6 +33,28 @@ Setup Instructions
     - cd playwright-tests
     - npx playwright test
 
+Test Structure
+Selenium JS Tests
+Page Object Model (POM):
+
+The project follows the POM pattern to keep the test logic separate from the UI interaction logic.
+Example: Login.page.js contains reusable methods for interacting with the login page (e.g., enterUsername, enterPassword).
+
+Tests:
+
+Login Tests (login/Login.spec.js):
+Verifies valid and invalid login scenarios using test data from loginData.json.
+
+Add to Cart Tests (add-to-cart/add-to-cart-.spec.js):
+Tests adding an item to the cart, viewing the cart, and removing an item from the cart.
+Screenshots are taken for each test case and stored in the tests/test-screenshots/ directory.
+
+Utilities:
+Shared utilities (shared/utility.js) handle test data loading (getTestData), screenshot capture (takeScreenshot), and more.
+
+Playwright Tests
+The playwright/login.spec.js provides a Playwright implementation of login functionality.
+
 Assumptions
 The tests are designed for the Sauce Demo Website (https://www.saucedemo.com/).
 Ensure the website is accessible before running tests.
